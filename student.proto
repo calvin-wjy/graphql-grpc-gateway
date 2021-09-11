@@ -1,0 +1,35 @@
+// student.proto
+syntax = "proto3";
+
+import "graphql.proto";
+
+option go_package = "github.com/crshao/grpc_graphql_gateway";
+
+service StudentManagement {
+  // gRPC service information
+  option (graphql.service) = {
+    host: "localhost:50051"
+    insecure: true
+  };
+
+  rpc GetStudents (GetStudentsParams) returns (StudentsList) {
+    // Here is plugin definition
+    option (graphql.schema) = {
+      type: QUERY   // declare as Query
+      name: "getStudents" // query name
+    };
+  }
+}
+
+message Student {
+  string name = 1;
+  string nim = 2;
+  int32 id = 3;
+}
+
+message GetStudentsParams {
+}
+
+message StudentsList {
+  repeated Student students = 1;
+}
