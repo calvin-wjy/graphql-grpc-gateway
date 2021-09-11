@@ -3,7 +3,7 @@ syntax = "proto3";
 
 import "graphql.proto";
 
-option go_package = "github.com/crshao/grpc_graphql_gateway";
+option go_package = "student";
 
 service StudentManagement {
   // gRPC service information
